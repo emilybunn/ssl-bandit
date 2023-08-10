@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <div class="main_div">
+        <div id="stimulus">
+            <h1>Click the button</h1>
+            <button id="submit-response" type="button" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        create_agent();
+    </script>
+{% endblock %}
