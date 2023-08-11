@@ -57,6 +57,7 @@ setup_args = dict(
             'selenium',
             'pexpect',
         ]
+    }
 )
 
 setup(**setup_args)
