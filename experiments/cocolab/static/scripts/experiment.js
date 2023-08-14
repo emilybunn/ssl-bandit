@@ -1,4 +1,5 @@
-var banditArms;
+var allBanditParams;
+var currBanditParams;
 var trialIndex = 0;
 var stageIndex = 0;
 var nTrials = 3;
@@ -28,10 +29,9 @@ var create_agent = function() {
 }
 
 var get_info = function() {
-  dallinger.getReceivedInfos(my_node_id)
+  dallinger.getExperimentProperty("all_bandit_params")
     .done(function (resp) {
-      var banditParams = resp.infos[0].contents;
-      banditArms = banditParams;
+      allBanditParams = resp.all_bandit_params;
       newTrial();
     })
     .fail(function (rejection) {
@@ -53,6 +53,7 @@ newTrial = function() {
   // reset the game
   trialIndex++;
   stageIndex = 1;
+  currBanditParams = allBanditParams[trialIndex - 1];
   $(".main_div").html("");
   if (trialIndex <= nTrials) {
     $(".main_div").append(`<h1 class="${trialClasses}" id="trial-${trialIndex}-label">Trial ${trialIndex}</h1>`);
