@@ -15,13 +15,15 @@ var create_agent = function() {
   dallinger.createAgent()
     .done(function (resp) {
       my_node_id = resp.node.id;
+      console.log("Created agent: " + my_node_id);
       get_info();
     })
     .fail(function (rejection) {
       // A 403 is our signal that it's time to go to the questionnaire
+      console.log("Failed to create agent.")
       if (rejection.status === 403) {
         dallinger.allowExit();
-        dallinger.goToPage('questionnaire');
+        // dallinger.goToPage('questionnaire');
       } else {
         dallinger.error(rejection);
       }
@@ -29,9 +31,10 @@ var create_agent = function() {
 }
 
 var get_info = function() {
-  dallinger.getExperimentProperty("all_bandit_params")
+  console.log("Getting info");
+  dallinger.getReceivedInfos(my_node_id)
     .done(function (resp) {
-      allBanditParams = resp.all_bandit_params;
+      currBanditParams = resp.infos[0].contents;
       newTrial();
     })
     .fail(function (rejection) {
@@ -53,7 +56,6 @@ newTrial = function() {
   // reset the game
   trialIndex++;
   stageIndex = 1;
-  currBanditParams = allBanditParams[trialIndex - 1];
   $(".main_div").html("");
   if (trialIndex <= nTrials) {
     $(".main_div").append(`<h1 class="${trialClasses}" id="trial-${trialIndex}-label">Trial ${trialIndex}</h1>`);
@@ -85,7 +87,7 @@ var makeActionFn = function(stageIndex, actionNum) {
       $(`#stage-${stageIndex}-action-${i}`).prop("onclick", null).off("click");
     }
     // compute and display the reward
-    var reward = Math.random() < bandit_arms[actionNum]["p_reward"] ? bandit_arms[actionNum]["reward_amount"] : 0;
+    var reward = Math.random() < currBanditParams[actionNum]["p_reward"] ? currBanditParams[actionNum]["reward_amount"] : 0;
     $(`#stage-${stageIndex}-reward`).html(reward);
     $(`#stage-${stageIndex}-result`).show();
     nextStage();

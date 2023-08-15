@@ -2,7 +2,7 @@
 from dallinger.config import get_config
 from dallinger.experiments import Experiment
 from dallinger.networks import Empty
-from
+from itertools import product
 try:
     from .bots import Bot
     Bot = Bot
@@ -13,43 +13,66 @@ except ImportError:
 def extra_parameters():
     config = get_config()
     types = {
-        'num_participants': int,
-        'all_bandit_params': dict
+        'num_participants': int
     }
 
     for key in types:
         config.register(key, types[key])
 
 
-class ssl(Experiment):
+class SSL(Experiment):
     """Define the structure of the experiment."""
     num_participants = 1
 
     def __init__(self, session=None):
         """Call the same parent constructor, then call setup() if we have a session.
         """
-        super(ssl, self).__init__(session)
+        super(SSL, self).__init__(session)
 
         from . import models
         self.models = models
+        self.set_conditions()
 
         if session:
             self.setup()
 
     def configure(self):
         config = get_config()
-        super(ssl, self).configure()
+        super(SSL, self).configure()
         self.experiment_repeats = 1
         self.num_participants = config.get('num_participants', 1)
 
-    def create_network(self):
-        """Return a new network."""
-        return Empty(max_size=self.num_participants)
+    def set_conditions(self):
+        """Define the conditions"""
+        n_bandit_tasks = list(range(3))
+        population_sizes = [10, 30, 100]
+        self.conditions = [{"task": x[0], "pop_size": x[1]} for x in product(n_bandit_tasks, population_sizes)]
 
-    def setup():
+    def create_network(self, condition):
+        """Return a new network."""
+        return self.models.SSLBanditNetwork(
+            max_size=self.num_participants,
+            condition=condition
+        )
+
+    def add_node_to_network(self, node, network):
+        """Add node to the chain and receive transmissions."""
+        network.add_node(node)
+        parents = node.neighbors(direction="from")
+        for parent in parents:
+            parent.transmit()
+        node.receive()
+
+    def setup(self):
         """Create the networks if there are none, adding the relevant sources to each."""
         if not self.networks():
-            super(ssl, self).setup()
-            for net in self.networks():
-                self.models.BanditParamsSource(network=net)
+            print("creating networks")
+            for condition in self.conditions:
+                print(f"creating network for condition {condition}")
+                network = self.create_network(condition=condition)
+                self.models.BanditParamsSource(
+                    network=network,
+                    task_id=condition["task"]
+                )
+                self.session.add(network)
             self.session.commit()
