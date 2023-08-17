@@ -10,6 +10,7 @@ var nActions = 3;
 var buttonClasses = "btn btn-primary action ml-2 ml-2";
 var stageClasses = "d-flex flex-column justify-content-center text-center mt-3";
 var trialClasses = "row justify-content-center";
+var tableClasses = "w3-table w3-border w3-bordered w3-centered";
 
 var create_agent = function() {
   dallinger.createAgent()
@@ -34,7 +35,7 @@ var get_info = function() {
   console.log("Getting info");
   dallinger.getReceivedInfos(my_node_id)
     .done(function (resp) {
-      currBanditParams = resp.infos[0].contents;
+      currBanditParams = JSON.parse(resp.infos[0].contents);
       newTrial();
     })
     .fail(function (rejection) {
@@ -58,6 +59,9 @@ newTrial = function() {
   stageIndex = 1;
   $(".main_div").html("");
   if (trialIndex <= nTrials) {
+    $(".main_div").append('<table id="stage-${stageIndex}-table" width="320" border="1"><tr><th onclick="sortTable()">Rank</th><th onclick="sortTable()"> Score</th><th> Actions </th></tr></table>');
+    loadTableData(data);
+    revealActions();
     $(".main_div").append(`<h1 class="${trialClasses}" id="trial-${trialIndex}-label">Trial ${trialIndex}</h1>`);
     renderStage();
   } else {
@@ -87,6 +91,7 @@ var makeActionFn = function(stageIndex, actionNum) {
       $(`#stage-${stageIndex}-action-${i}`).prop("onclick", null).off("click");
     }
     // compute and display the reward
+    // var currBanditDict = JSON.parse(currBanditParams);
     var reward = Math.random() < currBanditParams[actionNum]["p_reward"] ? currBanditParams[actionNum]["reward_amount"] : 0;
     $(`#stage-${stageIndex}-reward`).html(reward);
     $(`#stage-${stageIndex}-result`).show();
@@ -94,6 +99,153 @@ var makeActionFn = function(stageIndex, actionNum) {
   }
   return takeAction;
 }
+
+function sortTable() {
+  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+  table = document.getElementById("stage-${stageIndex}-table");
+  switching = true;
+  dir = "asc";
+  while (switching) {
+      switching = false;
+      rows = table.rows;
+      for (i = 1; i < (rows.length - 1); i++) {
+          shouldSwitch = false;
+          x = rows[i].getElementsByTagName("TD")[0];
+          y = rows[i + 1].getElementsByTagName("TD")[0];
+          if (dir == "asc") {
+              if (Number(x.innerHTML) > Number(y.innerHTML)) {
+                  shouldSwitch = true;
+                  break;
+              }
+          } else if (dir == "desc") {
+              if (Number(x.innerHTML) < Number(y.innerHTML)) {
+                  shouldSwitch = true;
+                  break;
+              }
+          }
+      }
+      if (shouldSwitch) {
+          rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+          switching = true;
+          switchcount ++;
+      } else {
+          if (switchcount == 0 && dir == "asc") {
+              dir = "desc";
+              switching = true;
+          }
+      }
+  }
+};
+
+function revealActions() {
+  var table = document.getElementById("stage-${stageIndex}-table")
+  var actionsRevealed = 0;
+  if (table != null) {
+    for (var i = 1; i < table.rows.length; i++) {
+        table.rows[i].cells[2].onclick = function () {
+          if (actionsRevealed < 5) {
+            if (tableText(this)) {
+              actionsRevealed++
+            }
+          }
+        };
+    }
+  }
+};
+
+const data = [
+  { rank: "1", score: "25", actions: "2, 3, 4"},
+  { rank: "2", score: "23", actions: "1, 1, 1"},
+  { rank: "3", score: "21", actions: "2, 3, 2"},
+  { rank: "4", score: "19", actions: "1, 2, 2"},
+  { rank: "5", score: "18", actions: "1, 2, 2"},
+  { rank: "6", score: "17", actions: "1, 2, 2"},
+  { rank: "7", score: "16", actions: "1, 2, 2"},
+  { rank: "8", score: "15", actions: "1, 2, 2"},
+  { rank: "9", score: "14", actions: "1, 2, 2"},
+  { rank: "10", score: "12", actions: "1, 2, 2"},
+];
+
+function tableText(tableCell) {
+    if (tableCell.innerHTML === "---") {
+      // var currBanditDict = JSON.parse(currBanditParams);
+      rank = tableCell.closest('tr').rowIndex
+      tableCell.innerHTML = currBanditParams[10][rank - 1]["actions"]
+      tableCell.style.color = "red";
+      return true
+    }
+    return false
+  }
+
+function loadTableData(items) {
+  const table = document.getElementById("stage-${stageIndex}-table");
+  var numTeachers = 10
+  // var currBanditDict = JSON.parse(currBanditParams);
+  
+  // for (let i = 0; i < currBanditDict[numTeachers].length; i++) {
+  //   let row = table.insertRow();
+  //   let rank = row.insertCell(0);
+  //   rank.innerHTML = currBanditDict[numTeachers][i]["rank"];
+  //   let score = row.insertCell(1);
+  //   score.innerHTML = currBanditDict[numTeachers][i]["score"];
+  //   let actions = row.insertCell(2);
+  //   actions.innerHTML = "---";
+  // }
+
+  // window.alert(currBanditDict[actionNum][1]["rank"]);
+
+  // var data = currBanditDict[actionNum]
+
+  // currBanditDict[actionNum].forEach(item => window.alert(item["rank"]));
+
+  // var data = currBanditDict[actionNum]
+
+  // window.alert(typeof(currBanditDict[actionNum]))
+
+  // let row = table.insertRow();
+  // let rank = row.insertCell(0);
+  // rank.innerHTML = currBanditDict[actionNum][0]["rank"];
+  // let score = row.insertCell(1);
+  // score.innerHTML = currBanditDict[actionNum][0]["score"];
+  // let actions = row.insertCell(2);
+  // actions.innerHTML = "---";
+
+  // data.forEach()
+
+  // data.forEach( item => {
+
+  // for (let i = 0; i < numTeache
+
+  currBanditParams[numTeachers].forEach( item => {
+    let row = table.insertRow();
+    let rank = row.insertCell(0);
+    rank.innerHTML = item["rank"];
+    let score = row.insertCell(1);
+    score.innerHTML = item["score"];
+    let actions = row.insertCell(2);
+    actions.innerHTML = "---";
+  });
+}
+
+// function createTable() {
+//   var headers = ["Rank", "Score", "Actions"];
+//   var table = document.createElement("TABLE");  //makes a table element for the page
+      
+//   for(var i = 0; i < data.length; i++) {
+//       var row = table.insertRow(i);
+//       row.insertCell(0).innerHTML = data[i].rank;
+//       row.insertCell(1).innerHTML = data[i].score;
+//       row.insertCell(2).innerHTML = data[i].actions;
+//   }
+
+//   var header = table.createTHead();
+//   var headerRow = header.insertRow(0);
+//   for(var i = 0; i < headers.length; i++) {
+//       headerRow.insertCell(i).innerHTML = headers[i];
+//   }
+
+//   document.body.append(table);
+// }
 
 var endExperiment = function() {
   $(".main_div").append("<p>Experiment complete!</p>")
