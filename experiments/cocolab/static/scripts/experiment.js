@@ -5,6 +5,7 @@ var stageIndex = 0;
 var nTrials = 3;
 var nStages = 3; // should be 5 in the main experiment
 var nActions = 3;
+var numTeachers = 5;
 
 // CSS classes
 var buttonClasses = "btn btn-primary action ml-2 ml-2";
@@ -63,7 +64,6 @@ newTrial = function() {
     loadTableData(data);
     revealActions();
     $(".main_div").append(`<h1 class="${trialClasses}" id="trial-${trialIndex}-label">Trial ${trialIndex}</h1>`);
-    renderStage();
   } else {
     endExperiment();
   }
@@ -143,9 +143,12 @@ function revealActions() {
   if (table != null) {
     for (var i = 1; i < table.rows.length; i++) {
         table.rows[i].cells[2].onclick = function () {
-          if (actionsRevealed < 5) {
+          if (actionsRevealed < numTeachers) {
             if (tableText(this)) {
               actionsRevealed++
+              if (actionsRevealed == numTeachers) {
+                renderStage();
+              }
             }
           }
         };
@@ -175,15 +178,11 @@ function tableText(tableCell) {
       return true
     }
     return false
-  }
+}
 
 function loadTableData(items) {
   const table = document.getElementById(`stage-${stageIndex}-table`);
   var numTeachers = 10
-  console.log("currBanditParams")
-  console.log(currBanditParams)
-  console.log("currBanditParams[numTeachers]")
-  console.log(currBanditParams[numTeachers])
   currBanditParams[numTeachers].forEach( item => {
     let row = table.insertRow();
     let rank = row.insertCell(0);
