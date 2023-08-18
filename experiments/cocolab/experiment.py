@@ -57,10 +57,13 @@ class SSL(Experiment):
 
     def add_node_to_network(self, node, network):
         """Add node to the chain and receive transmissions."""
+        print("adding node to network")
         network.add_node(node)
         parents = node.neighbors(direction="from")
         for parent in parents:
+            print(f"transmitting from parent {parent}")
             parent.transmit()
+        print("receiving information")
         node.receive()
 
     def setup(self):
@@ -76,3 +79,10 @@ class SSL(Experiment):
                 )
                 self.session.add(network)
             self.session.commit()
+
+    def recruit(self):
+        """Recruit one participant at a time until all networks are full."""
+        if self.networks(full=False):
+            self.recruiter.recruit(n=1)
+        else:
+            self.recruiter.close_recruitment()

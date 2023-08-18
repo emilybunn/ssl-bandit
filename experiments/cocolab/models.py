@@ -17,7 +17,7 @@ class BanditParamsSource(Source):
     @hybrid_property
     def task_id(self):
         """Make property1 condition."""
-        return repr(self.property1)
+        return int(self.property1)
 
     @task_id.setter
     def task_id(self, condition):
@@ -34,7 +34,7 @@ class BanditParamsSource(Source):
         print(f'retrieving task id {self.task_id}')
         with open("static/stimuli/bandit_params.json", "r") as f:
             params = json.load(f)
-            return json.dumps(params[0])
+            return json.dumps(params[self.task_id])
 
 
 class SSLBanditNetwork(Empty):
