@@ -18,10 +18,34 @@
  {
   "1": {"p_reward": 0.1, "reward_amount": 4 },
   "2": {"p_reward": 0.15, "reward_amount": 10 },
-  "3": {"p_reward": 0.9, "reward_amount": 7 }
+  "3": {"p_reward": 0.9, "reward_amount": 7 },
+  "10": [
+    { "rank": "1", "score": "25", "actions": "2, 3, 4"},
+    { "rank": "2", "score": "23", "actions": "1, 1, 1"},
+    { "rank": "3", "score": "21", "actions": "2, 3, 2"},
+    { "rank": "4", "score": "19", "actions": "1, 2, 2"},
+    { "rank": "5", "score": "18", "actions": "1, 2, 2"},
+    { "rank": "6", "score": "17", "actions": "1, 2, 2"},
+    { "rank": "7", "score": "16", "actions": "1, 2, 2"},
+    { "rank": "8", "score": "15", "actions": "1, 2, 2"},
+    { "rank": "9", "score": "14", "actions": "1, 2, 2"},
+    { "rank": "10", "score": "12", "actions": "1, 2, 2"}
+  ]
 },
  {
   "1": {"p_reward": 0.3, "reward_amount": 5 },
   "2": {"p_reward": 0.8, "reward_amount": 10 },
-  "3": {"p_reward": 0.1, "reward_amount": 100 }
+  "3": {"p_reward": 0.1, "reward_amount": 100 },
+  "10": [
+    { "rank": "1", "score": "25", "actions": "2, 3, 4"},
+    { "rank": "2", "score": "23", "actions": "1, 1, 1"},
+    { "rank": "3", "score": "21", "actions": "2, 3, 2"},
+    { "rank": "4", "score": "19", "actions": "1, 2, 2"},
+    { "rank": "5", "score": "18", "actions": "1, 2, 2"},
+    { "rank": "6", "score": "17", "actions": "1, 2, 2"},
+    { "rank": "7", "score": "16", "actions": "1, 2, 2"},
+    { "rank": "8", "score": "15", "actions": "1, 2, 2"},
+    { "rank": "9", "score": "14", "actions": "1, 2, 2"},
+    { "rank": "10", "score": "12", "actions": "1, 2, 2"}
+  ]
 }]

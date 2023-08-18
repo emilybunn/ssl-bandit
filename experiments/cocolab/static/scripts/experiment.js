@@ -10,7 +10,7 @@ var nActions = 3;
 var buttonClasses = "btn btn-primary action ml-2 ml-2";
 var stageClasses = "d-flex flex-column justify-content-center text-center mt-3";
 var trialClasses = "row justify-content-center";
-var tableClasses = "w3-table w3-border w3-bordered w3-centered";
+var tableClasses = "position-fixed w3-table w3-border w3-bordered w3-centered";
 
 var create_agent = function() {
   dallinger.createAgent()
@@ -59,7 +59,7 @@ newTrial = function() {
   stageIndex = 1;
   $(".main_div").html("");
   if (trialIndex <= nTrials) {
-    $(".main_div").append('<table id="stage-${stageIndex}-table" width="320" border="1"><tr><th onclick="sortTable()">Rank</th><th onclick="sortTable()"> Score</th><th> Actions </th></tr></table>');
+    $(".main_div").append(`<table id="stage-${stageIndex}-table" width="320" class="${tableClasses}" border="1"><tr><th onclick="sortTable()">Rank</th><th onclick="sortTable()"> Score</th><th> Actions </th></tr></table>`);
     loadTableData(data);
     revealActions();
     $(".main_div").append(`<h1 class="${trialClasses}" id="trial-${trialIndex}-label">Trial ${trialIndex}</h1>`);
@@ -102,7 +102,7 @@ var makeActionFn = function(stageIndex, actionNum) {
 
 function sortTable() {
   var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-  table = document.getElementById("stage-${stageIndex}-table");
+  table = document.getElementById(`stage-${stageIndex}-table`);
   switching = true;
   dir = "asc";
   while (switching) {
@@ -138,7 +138,7 @@ function sortTable() {
 };
 
 function revealActions() {
-  var table = document.getElementById("stage-${stageIndex}-table")
+  var table = document.getElementById(`stage-${stageIndex}-table`)
   var actionsRevealed = 0;
   if (table != null) {
     for (var i = 1; i < table.rows.length; i++) {
@@ -178,44 +178,12 @@ function tableText(tableCell) {
   }
 
 function loadTableData(items) {
-  const table = document.getElementById("stage-${stageIndex}-table");
+  const table = document.getElementById(`stage-${stageIndex}-table`);
   var numTeachers = 10
-  // var currBanditDict = JSON.parse(currBanditParams);
-  
-  // for (let i = 0; i < currBanditDict[numTeachers].length; i++) {
-  //   let row = table.insertRow();
-  //   let rank = row.insertCell(0);
-  //   rank.innerHTML = currBanditDict[numTeachers][i]["rank"];
-  //   let score = row.insertCell(1);
-  //   score.innerHTML = currBanditDict[numTeachers][i]["score"];
-  //   let actions = row.insertCell(2);
-  //   actions.innerHTML = "---";
-  // }
-
-  // window.alert(currBanditDict[actionNum][1]["rank"]);
-
-  // var data = currBanditDict[actionNum]
-
-  // currBanditDict[actionNum].forEach(item => window.alert(item["rank"]));
-
-  // var data = currBanditDict[actionNum]
-
-  // window.alert(typeof(currBanditDict[actionNum]))
-
-  // let row = table.insertRow();
-  // let rank = row.insertCell(0);
-  // rank.innerHTML = currBanditDict[actionNum][0]["rank"];
-  // let score = row.insertCell(1);
-  // score.innerHTML = currBanditDict[actionNum][0]["score"];
-  // let actions = row.insertCell(2);
-  // actions.innerHTML = "---";
-
-  // data.forEach()
-
-  // data.forEach( item => {
-
-  // for (let i = 0; i < numTeache
-
+  console.log("currBanditParams")
+  console.log(currBanditParams)
+  console.log("currBanditParams[numTeachers]")
+  console.log(currBanditParams[numTeachers])
   currBanditParams[numTeachers].forEach( item => {
     let row = table.insertRow();
     let rank = row.insertCell(0);
@@ -226,26 +194,6 @@ function loadTableData(items) {
     actions.innerHTML = "---";
   });
 }
-
-// function createTable() {
-//   var headers = ["Rank", "Score", "Actions"];
-//   var table = document.createElement("TABLE");  //makes a table element for the page
-      
-//   for(var i = 0; i < data.length; i++) {
-//       var row = table.insertRow(i);
-//       row.insertCell(0).innerHTML = data[i].rank;
-//       row.insertCell(1).innerHTML = data[i].score;
-//       row.insertCell(2).innerHTML = data[i].actions;
-//   }
-
-//   var header = table.createTHead();
-//   var headerRow = header.insertRow(0);
-//   for(var i = 0; i < headers.length; i++) {
-//       headerRow.insertCell(i).innerHTML = headers[i];
-//   }
-
-//   document.body.append(table);
-// }
 
 var endExperiment = function() {
   $(".main_div").append("<p>Experiment complete!</p>")
