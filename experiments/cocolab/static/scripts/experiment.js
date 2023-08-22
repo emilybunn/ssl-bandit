@@ -1,15 +1,18 @@
-var allBanditParams;
+var banditParams;
+var teacherData;
 var currBanditParams;
+var currTeacherData;
+var numTeachers;
 var trialTeachersChosen;
 var trialArmsPulled;
 var trialRewardsGotten;
-var actionsRevealed = 0;
+var actionsRevealed;
 var trialIndex = 0;
 var stageIndex = 0;
 var nTrials = 3;
 var nStages = 3; // should be 5 in the main experiment
 var nActions = 3;
-var numTeachers = 5;
+var actionsRevealed = 0;
 var teachersToLearnFrom = 5;
 var trialInfo = {
   1: {
@@ -29,7 +32,7 @@ var trialInfo = {
   }
 }
 
-const instructions = `There are ${numTeachers} teachers to learn from. You can choose a total of ${teachersToLearnFrom} teachers' actions to reveal.`
+// var instructions = 
 
 // CSS classes
 var buttonClasses = "btn btn-primary action ml-2 ml-2";
@@ -61,7 +64,9 @@ var get_info = function() {
   console.log("Getting info");
   dallinger.getReceivedInfos(my_node_id)
     .done(function (resp) {
-      currBanditParams = JSON.parse(resp.infos[0].contents);
+      contents = JSON.parse(resp.infos[0].contents);
+      banditParams = contents["params"];
+      teacherData = contents["teacher_data"];
       newTrial();
     })
     .fail(function (rejection) {
@@ -85,12 +90,21 @@ newTrial = function() {
   stageIndex = 1;
   $(".main_div").html("");
   if (trialIndex <= nTrials) {
+    currBanditParams = banditParams[trialIndex];
+    currTeacherData = teacherData[trialIndex]["data"];
+    numTeachers = teacherData[trialIndex]["n"];
+    // window.alert(trialIndex)
+    // window.alert(JSON.stringify(banditParams));
+    // window.alert(JSON.stringify(teacherData));
+    // window.alert(JSON.stringify(currBanditParams))
+    // window.alert(JSON.stringify(currTeacherData))
+    // window.alert(JSON.stringify(numTeachers));
     trialTeachersChosen = [];
     trialArmsPulled = [];
     trialRewardsGotten = [];
     $(".main_div").append(`<div class="${instructionClasses}" id="trial-${trialIndex}-instructions"></div>`);
     $(`#trial-${trialIndex}-instructions`).append(`<h1>Learn from people.</h1>`);
-    $(`#trial-${trialIndex}-instructions`).append(`<p>${instructions}</p>`);
+    $(`#trial-${trialIndex}-instructions`).append(`<p>There are ${numTeachers} teachers to learn from. You can choose a total of ${teachersToLearnFrom} teachers' actions to reveal.</p>`);
     $(`#trial-${trialIndex}-instructions`).append(`<p id="trial-${trialIndex}-tracker">You have chosen ${actionsRevealed} teachers, please choose ${teachersToLearnFrom - actionsRevealed} more.</p>`);
     $(".main_div").append(`<table id="stage-${stageIndex}-table" width="320" class="${tableClasses}" border="1"><tr><th onclick="sortTable()">Rank</th><th onclick="sortTable()"> Score</th><th> Actions </th></tr></table>`);
     loadTableData();
@@ -125,7 +139,6 @@ var makeActionFn = function(stageIndex, actionNum) {
       $(`#stage-${stageIndex}-action-${i}`).prop("onclick", null).off("click");
     }
     // compute and display the reward
-    // var currBanditDict = JSON.parse(currBanditParams);
     var reward = Math.random() < currBanditParams[actionNum]["p_reward"] ? currBanditParams[actionNum]["reward_amount"] : 0;
     trialArmsPulled.push(actionNum);
     trialRewardsGotten.push(reward);
@@ -179,11 +192,11 @@ function revealActions() {
   if (table != null) {
     for (var i = 1; i < table.rows.length; i++) {
         table.rows[i].cells[2].onclick = function () {
-          if (actionsRevealed < numTeachers) {
+          if (actionsRevealed < teachersToLearnFrom) {
             if (tableText(this)) {
               actionsRevealed++
               var teacherTracker = document.getElementById(`trial-${trialIndex}-tracker`);
-              if (actionsRevealed == numTeachers) {
+              if (actionsRevealed == teachersToLearnFrom) {
                 teacherTracker.innerHTML = `You have chosen all ${actionsRevealed} teachers, please begin the task.`;
                 trialInfo[trialIndex]["teachersChosen"] = trialTeachersChosen;
                 renderStage();
@@ -199,10 +212,9 @@ function revealActions() {
 
 function tableText(tableCell) {
     if (tableCell.innerHTML === "---") {
-      // var currBanditDict = JSON.parse(currBanditParams);
       rank = tableCell.closest('tr').rowIndex
       trialTeachersChosen.push(rank);
-      tableCell.innerHTML = currBanditParams[10][rank - 1]["actions"]
+      tableCell.innerHTML = currTeacherData[rank - 1]["actions"]
       tableCell.style.color = "red";
       return true
     }
@@ -211,8 +223,7 @@ function tableText(tableCell) {
 
 function loadTableData() {
   const table = document.getElementById(`stage-${stageIndex}-table`);
-  var numTeachers = 10
-  currBanditParams[numTeachers].forEach( item => {
+  currTeacherData.forEach( item => {
     let row = table.insertRow();
     let rank = row.insertCell(0);
     rank.innerHTML = item["rank"];

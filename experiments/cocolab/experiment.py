@@ -75,7 +75,7 @@ class SSL(Experiment):
                 network = self.create_network(condition=condition)
                 self.models.BanditParamsSource(
                     network=network,
-                    task_id=condition["task"]
+                    cond_num=condition["task"]
                 )
                 self.session.add(network)
             self.session.commit()
