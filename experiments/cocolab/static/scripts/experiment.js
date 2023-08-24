@@ -10,7 +10,7 @@ var actionsRevealed;
 var trialIndex = 0;
 var stageIndex = 0;
 var nTrials = 3;
-var nStages = 3; // should be 5 in the main experiment
+var nStages = 5; // should be 5 in the main experiment
 var nActions = 3;
 var actionsRevealed = 0;
 var teachersToLearnFrom = 5;
@@ -32,6 +32,10 @@ var trialInfo = {
   }
 }
 
+var trialLocations = ['Rainforest', 'Beach', 'Mountains'];
+var stageLocations = ['North', 'East', 'West'];
+var trialSpecies = ['Blue-and-Yellow Macaw', 'Albatross', 'Elegant Trogon']
+
 // var instructions = 
 
 // CSS classes
@@ -39,7 +43,7 @@ var buttonClasses = "btn btn-primary action ml-2 ml-2";
 var instructionClasses = "d-flex flex-column mt-3";
 var stageClasses = "d-flex flex-column justify-content-center text-center mt-3";
 var trialClasses = "row justify-content-center";
-var tableClasses = "position-fixed w3-table w3-border w3-bordered w3-centered";
+var tableClasses = "position-fixed w3-table w3-border w3-bordered w3-centered scrolldown";
 
 var create_agent = function() {
   dallinger.createAgent()
@@ -103,13 +107,15 @@ newTrial = function() {
     trialArmsPulled = [];
     trialRewardsGotten = [];
     $(".main_div").append(`<div class="${instructionClasses}" id="trial-${trialIndex}-instructions"></div>`);
-    $(`#trial-${trialIndex}-instructions`).append(`<h1>Learn from people.</h1>`);
-    $(`#trial-${trialIndex}-instructions`).append(`<p>There are ${numTeachers} teachers to learn from. You can choose a total of ${teachersToLearnFrom} teachers' actions to reveal.</p>`);
+    $(`#trial-${trialIndex}-instructions`).append(`<h1>Bird Watching, Trip ${trialIndex} in the ${trialLocations[trialIndex - 1]}.</h1>`);
+    $(`#trial-${trialIndex}-instructions`).append(`<p>You are in a ${trialLocations[trialIndex - 1]}, trying to take a photo of the rare ${trialSpecies[trialIndex]}. You are here for five days, trying to choose between three locations: ${stageLocations}. </p>`);
+    $(`#trial-${trialIndex}-instructions`).append(`<p>Each spot in the ${trialLocations[trialIndex - 1]} has a variable chance of spotting one of the birds, as well as a variable reward.</p>`);
+    $(`#trial-${trialIndex}-instructions`).append(`<p>There are ${numTeachers} fellow birdwatchers who've scouted out this location beforehand. You can choose a total of ${teachersToLearnFrom} birdwatchers' location choices to reveal.</p>`);
     $(`#trial-${trialIndex}-instructions`).append(`<p id="trial-${trialIndex}-tracker">You have chosen ${actionsRevealed} teachers, please choose ${teachersToLearnFrom - actionsRevealed} more.</p>`);
-    $(".main_div").append(`<table id="stage-${stageIndex}-table" width="320" class="${tableClasses}" border="1"><tr><th onclick="sortTable()">Rank</th><th onclick="sortTable()"> Score</th><th> Actions </th></tr></table>`);
+    $(".main_div").append(`<table id="stage-${stageIndex}-table" width="320" height="200" class="${tableClasses}" border="1"><tr><th onclick="sortTable()">Rank</th><th onclick="sortTable()"> Score</th><th> Locations </th></tr></table>`);
     loadTableData();
     revealActions();
-    $(".main_div").append(`<h1 class="${trialClasses}" id="trial-${trialIndex}-label">Trial ${trialIndex}</h1>`);
+    $(".main_div").append(`<h1 class="${trialClasses}" id="trial-${trialIndex}-label">${trialLocations[trialIndex]}</h1>`);
   } else {
     endExperiment();
   }
@@ -117,16 +123,16 @@ newTrial = function() {
 
 renderStage = function() {
   $(".main_div").append(`<div class="${stageClasses}" id="stage-${stageIndex}"></div>`);
-  $(`#stage-${stageIndex}`).append(`<h2>Stage ${stageIndex}</p>`);
+  $(`#stage-${stageIndex}`).append(`<h2>Day ${stageIndex}</p>`);
   $(`#stage-${stageIndex}`).append(`<div id="stage-${stageIndex}-actions"></div>`);
-  $(`#stage-${stageIndex}-actions`).append(`<p>Choose an action:</p>`);
+  $(`#stage-${stageIndex}-actions`).append(`<p>Choose a birdwatching location!</p>`);
   for (var i = 1; i <= nActions; i++) {
-    $(`#stage-${stageIndex}-actions`).append(`<button type="button" class="${buttonClasses}" id="stage-${stageIndex}-action-${i}">Action ${i}</button>`);
+    $(`#stage-${stageIndex}-actions`).append(`<button type="button" class="${buttonClasses}" id="stage-${stageIndex}-action-${i}">${stageLocations[i - 1]}</button>`);
     $(`#stage-${stageIndex}-action-${i}`).click(makeActionFn(stageIndex, i))
   }
   trialInfo[trialIndex]["armsPulled"] = trialArmsPulled;
   trialInfo[trialIndex]["rewardsGotten"] = trialRewardsGotten;
-  $(`#stage-${stageIndex}`).append(`<div class="result" id="stage-${stageIndex}-result" style="display: none;">Reward: <span id="stage-${stageIndex}-reward"></span></div>`);
+  $(`#stage-${stageIndex}`).append(`<div class="result" id="stage-${stageIndex}-result" style="display: none; color: blue; font-size: 160%; "><strong>Reward: <span id="stage-${stageIndex}-reward"></span></strong></div>`);
 }
 
 var makeActionFn = function(stageIndex, actionNum) {
@@ -139,7 +145,7 @@ var makeActionFn = function(stageIndex, actionNum) {
       $(`#stage-${stageIndex}-action-${i}`).prop("onclick", null).off("click");
     }
     // compute and display the reward
-    var reward = Math.random() < currBanditParams[actionNum]["p_reward"] ? currBanditParams[actionNum]["reward_amount"] : 0;
+    var reward = Math.random() < currBanditParams[actionNum]["p_reward"] ? currBanditParams[actionNum]["reward_amount"][Math.round(Math.random())] : 0;
     trialArmsPulled.push(actionNum);
     trialRewardsGotten.push(reward);
     $(`#stage-${stageIndex}-reward`).html(reward);
@@ -214,7 +220,8 @@ function tableText(tableCell) {
     if (tableCell.innerHTML === "---") {
       rank = tableCell.closest('tr').rowIndex
       trialTeachersChosen.push(rank);
-      tableCell.innerHTML = currTeacherData[rank - 1]["actions"]
+      var actions = currTeacherData[rank - 1]["actions"]
+      tableCell.innerHTML = [`${stageLocations[actions[0]]}`, `${stageLocations[actions[1]]}`, `${stageLocations[actions[2]]}`]
       tableCell.style.color = "red";
       return true
     }
