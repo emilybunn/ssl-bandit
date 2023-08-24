@@ -39,7 +39,9 @@ var buttonClasses = "btn btn-primary action ml-2 ml-2";
 var instructionClasses = "d-flex flex-column mt-3";
 var stageClasses = "d-flex flex-column justify-content-center text-center mt-3";
 var trialClasses = "row justify-content-center";
-var tableClasses = "position-fixed w3-table w3-border w3-bordered w3-centered";
+var tableClasses = "w3-table w3-border w3-bordered w3-centered";
+var tableContainerClasses = "position-fixed"
+var tableContainerStyles = "overflow-y: auto;overflow-x: hidden;"
 
 var create_agent = function() {
   dallinger.createAgent()
@@ -93,12 +95,6 @@ newTrial = function() {
     currBanditParams = banditParams[trialIndex];
     currTeacherData = teacherData[trialIndex]["data"];
     numTeachers = teacherData[trialIndex]["n"];
-    // window.alert(trialIndex)
-    // window.alert(JSON.stringify(banditParams));
-    // window.alert(JSON.stringify(teacherData));
-    // window.alert(JSON.stringify(currBanditParams))
-    // window.alert(JSON.stringify(currTeacherData))
-    // window.alert(JSON.stringify(numTeachers));
     trialTeachersChosen = [];
     trialArmsPulled = [];
     trialRewardsGotten = [];
@@ -106,9 +102,10 @@ newTrial = function() {
     $(`#trial-${trialIndex}-instructions`).append(`<h1>Learn from people.</h1>`);
     $(`#trial-${trialIndex}-instructions`).append(`<p>There are ${numTeachers} teachers to learn from. You can choose a total of ${teachersToLearnFrom} teachers' actions to reveal.</p>`);
     $(`#trial-${trialIndex}-instructions`).append(`<p id="trial-${trialIndex}-tracker">You have chosen ${actionsRevealed} teachers, please choose ${teachersToLearnFrom - actionsRevealed} more.</p>`);
-    $(".main_div").append(`<table id="stage-${stageIndex}-table" width="320" class="${tableClasses}" border="1"><tr><th onclick="sortTable()">Rank</th><th onclick="sortTable()"> Score</th><th> Actions </th></tr></table>`);
+    $(".main_div").append(`<div class="tableContainer ${tableContainerClasses}" style="${tableContainerStyles}"><table id="stage-${stageIndex}-table" width="320" class="${tableClasses}" border="1"><tr><th onclick="sortTable()">Rank</th><th onclick="sortTable()"> Score</th><th> Actions </th></tr></table></div>`);
     loadTableData();
     revealActions();
+    $(".tableContainer").css("max-height", `${window.innerHeight - 100 - $(".tableContainer").offset().top}px`);
     $(".main_div").append(`<h1 class="${trialClasses}" id="trial-${trialIndex}-label">Trial ${trialIndex}</h1>`);
   } else {
     endExperiment();
