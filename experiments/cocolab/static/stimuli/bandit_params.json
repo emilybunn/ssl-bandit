@@ -1,17 +1,71 @@
 {
-  "1": {
-    "1": {"p_reward": 0.45, "reward_amount": 6 },
-    "2": {"p_reward": 0.15, "reward_amount": 2 },
-    "3": {"p_reward": 0.1, "reward_amount": 3 }
-  },
-  "2": {
-    "1": {"p_reward": 0.45, "reward_amount": 10 },
-    "2": {"p_reward": 0.15, "reward_amount": 6 },
-    "3": {"p_reward": 0.1, "reward_amount": 5 }
-  },
-  "3": {
-    "1": {"p_reward": 0.45, "reward_amount": 8 },
-    "2": {"p_reward": 0.15, "reward_amount": 3 },
-    "3": {"p_reward": 0.1, "reward_amount": 7 }
-  }
+    "1": {
+        "1": {
+            "p_reward": 0.05,
+            "reward_amount": [
+                3,
+                6
+            ]
+        },
+        "2": {
+            "p_reward": 0.9,
+            "reward_amount": [
+                1,
+                3
+            ]
+        },
+        "3": {
+            "p_reward": 0.6,
+            "reward_amount": [
+                3,
+                5
+            ]
+        }
+    },
+    "2": {
+        "1": {
+            "p_reward": 0.6,
+            "reward_amount": [
+                2,
+                4
+            ]
+        },
+        "2": {
+            "p_reward": 0.35,
+            "reward_amount": [
+                3,
+                5
+            ]
+        },
+        "3": {
+            "p_reward": 0.75,
+            "reward_amount": [
+                3,
+                5
+            ]
+        }
+    },
+    "3": {
+        "1": {
+            "p_reward": 0.35,
+            "reward_amount": [
+                3,
+                5
+            ]
+        },
+        "2": {
+            "p_reward": 0.75,
+            "reward_amount": [
+                3,
+                5
+            ]
+        },
+        "3": {
+            "p_reward": 0.3,
+            "reward_amount": [
+                2,
+                4
+            ]
+        }
+    }
 }
