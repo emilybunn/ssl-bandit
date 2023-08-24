@@ -1,0 +1,1277 @@
+[
+    {
+        "n": 10,
+        "data": [
+            {
+                "score": 21,
+                "actions": [
+                    1,
+                    2,
+                    2
+                ],
+                "rank": 1
+            },
+            {
+                "score": 16,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 2
+            },
+            {
+                "score": 15,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 3
+            },
+            {
+                "score": 14,
+                "actions": [
+                    2,
+                    2,
+                    0
+                ],
+                "rank": 4
+            },
+            {
+                "score": 14,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 4
+            },
+            {
+                "score": 13,
+                "actions": [
+                    0,
+                    1,
+                    1
+                ],
+                "rank": 5
+            },
+            {
+                "score": 12,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 6
+            },
+            {
+                "score": 11,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 7
+            },
+            {
+                "score": 10,
+                "actions": [
+                    2,
+                    1,
+                    1
+                ],
+                "rank": 8
+            },
+            {
+                "score": 7,
+                "actions": [
+                    0,
+                    1,
+                    0
+                ],
+                "rank": 9
+            }
+        ]
+    },
+    {
+        "n": 30,
+        "data": [
+            {
+                "score": 21,
+                "actions": [
+                    1,
+                    2,
+                    2
+                ],
+                "rank": 1
+            },
+            {
+                "score": 18,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 2
+            },
+            {
+                "score": 16,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 3
+            },
+            {
+                "score": 16,
+                "actions": [
+                    0,
+                    1,
+                    2
+                ],
+                "rank": 3
+            },
+            {
+                "score": 16,
+                "actions": [
+                    0,
+                    1,
+                    0
+                ],
+                "rank": 3
+            },
+            {
+                "score": 16,
+                "actions": [
+                    0,
+                    1,
+                    1
+                ],
+                "rank": 3
+            },
+            {
+                "score": 15,
+                "actions": [
+                    0,
+                    1,
+                    1
+                ],
+                "rank": 4
+            },
+            {
+                "score": 15,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 4
+            },
+            {
+                "score": 15,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 4
+            },
+            {
+                "score": 15,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 4
+            },
+            {
+                "score": 14,
+                "actions": [
+                    2,
+                    2,
+                    0
+                ],
+                "rank": 5
+            },
+            {
+                "score": 14,
+                "actions": [
+                    0,
+                    1,
+                    1
+                ],
+                "rank": 5
+            },
+            {
+                "score": 14,
+                "actions": [
+                    2,
+                    2,
+                    0
+                ],
+                "rank": 5
+            },
+            {
+                "score": 14,
+                "actions": [
+                    1,
+                    1,
+                    0
+                ],
+                "rank": 5
+            },
+            {
+                "score": 14,
+                "actions": [
+                    2,
+                    1,
+                    1
+                ],
+                "rank": 5
+            },
+            {
+                "score": 13,
+                "actions": [
+                    2,
+                    1,
+                    1
+                ],
+                "rank": 6
+            },
+            {
+                "score": 13,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 6
+            },
+            {
+                "score": 13,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 6
+            },
+            {
+                "score": 13,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 6
+            },
+            {
+                "score": 12,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 7
+            },
+            {
+                "score": 12,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 7
+            },
+            {
+                "score": 12,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 7
+            },
+            {
+                "score": 12,
+                "actions": [
+                    2,
+                    1,
+                    1
+                ],
+                "rank": 7
+            },
+            {
+                "score": 11,
+                "actions": [
+                    0,
+                    0,
+                    0
+                ],
+                "rank": 8
+            },
+            {
+                "score": 11,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 8
+            },
+            {
+                "score": 11,
+                "actions": [
+                    2,
+                    2,
+                    1
+                ],
+                "rank": 8
+            },
+            {
+                "score": 10,
+                "actions": [
+                    2,
+                    1,
+                    2
+                ],
+                "rank": 9
+            },
+            {
+                "score": 9,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 10
+            },
+            {
+                "score": 9,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 10
+            },
+            {
+                "score": 7,
+                "actions": [
+                    0,
+                    1,
+                    1
+                ],
+                "rank": 11
+            }
+        ]
+    },
+    {
+        "n": 100,
+        "data": [
+            {
+                "score": 21,
+                "actions": [
+                    1,
+                    2,
+                    2
+                ],
+                "rank": 1
+            },
+            {
+                "score": 19,
+                "actions": [
+                    2,
+                    0,
+                    1
+                ],
+                "rank": 2
+            },
+            {
+                "score": 18,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 3
+            },
+            {
+                "score": 18,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 3
+            },
+            {
+                "score": 18,
+                "actions": [
+                    2,
+                    0,
+                    1
+                ],
+                "rank": 3
+            },
+            {
+                "score": 16,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 4
+            },
+            {
+                "score": 16,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 4
+            },
+            {
+                "score": 16,
+                "actions": [
+                    0,
+                    1,
+                    0
+                ],
+                "rank": 4
+            },
+            {
+                "score": 16,
+                "actions": [
+                    2,
+                    2,
+                    2
+                ],
+                "rank": 4
+            },
+            {
+                "score": 16,
+                "actions": [
+                    0,
+                    1,
+                    2
+                ],
+                "rank": 4
+            },
+            {
+                "score": 16,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 4
+            },
+            {
+                "score": 16,
+                "actions": [
+                    2,
+                    0,
+                    1
+                ],
+                "rank": 4
+            },
+            {
+                "score": 16,
+                "actions": [
+                    0,
+                    1,
+                    0
+                ],
+                "rank": 4
+            },
+            {
+                "score": 16,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 4
+            },
+            {
+                "score": 16,
+                "actions": [
+                    2,
+                    1,
+                    1
+                ],
+                "rank": 4
+            },
+            {
+                "score": 16,
+                "actions": [
+                    0,
+                    1,
+                    1
+                ],
+                "rank": 4
+            },
+            {
+                "score": 16,
+                "actions": [
+                    2,
+                    2,
+                    1
+                ],
+                "rank": 4
+            },
+            {
+                "score": 16,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 4
+            },
+            {
+                "score": 15,
+                "actions": [
+                    0,
+                    1,
+                    1
+                ],
+                "rank": 5
+            },
+            {
+                "score": 15,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 5
+            },
+            {
+                "score": 15,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 5
+            },
+            {
+                "score": 15,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 5
+            },
+            {
+                "score": 15,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 5
+            },
+            {
+                "score": 15,
+                "actions": [
+                    1,
+                    2,
+                    1
+                ],
+                "rank": 5
+            },
+            {
+                "score": 15,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 5
+            },
+            {
+                "score": 15,
+                "actions": [
+                    0,
+                    0,
+                    1
+                ],
+                "rank": 5
+            },
+            {
+                "score": 15,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 5
+            },
+            {
+                "score": 15,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 5
+            },
+            {
+                "score": 15,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 5
+            },
+            {
+                "score": 14,
+                "actions": [
+                    0,
+                    0,
+                    0
+                ],
+                "rank": 6
+            },
+            {
+                "score": 14,
+                "actions": [
+                    2,
+                    2,
+                    0
+                ],
+                "rank": 6
+            },
+            {
+                "score": 14,
+                "actions": [
+                    0,
+                    1,
+                    1
+                ],
+                "rank": 6
+            },
+            {
+                "score": 14,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 6
+            },
+            {
+                "score": 14,
+                "actions": [
+                    0,
+                    1,
+                    1
+                ],
+                "rank": 6
+            },
+            {
+                "score": 14,
+                "actions": [
+                    2,
+                    2,
+                    1
+                ],
+                "rank": 6
+            },
+            {
+                "score": 14,
+                "actions": [
+                    2,
+                    0,
+                    2
+                ],
+                "rank": 6
+            },
+            {
+                "score": 14,
+                "actions": [
+                    2,
+                    2,
+                    0
+                ],
+                "rank": 6
+            },
+            {
+                "score": 14,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 6
+            },
+            {
+                "score": 14,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 6
+            },
+            {
+                "score": 14,
+                "actions": [
+                    1,
+                    1,
+                    0
+                ],
+                "rank": 6
+            },
+            {
+                "score": 14,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 6
+            },
+            {
+                "score": 14,
+                "actions": [
+                    2,
+                    2,
+                    1
+                ],
+                "rank": 6
+            },
+            {
+                "score": 14,
+                "actions": [
+                    2,
+                    1,
+                    1
+                ],
+                "rank": 6
+            },
+            {
+                "score": 14,
+                "actions": [
+                    1,
+                    1,
+                    0
+                ],
+                "rank": 6
+            },
+            {
+                "score": 14,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 6
+            },
+            {
+                "score": 13,
+                "actions": [
+                    2,
+                    1,
+                    1
+                ],
+                "rank": 7
+            },
+            {
+                "score": 13,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 7
+            },
+            {
+                "score": 13,
+                "actions": [
+                    2,
+                    0,
+                    1
+                ],
+                "rank": 7
+            },
+            {
+                "score": 13,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 7
+            },
+            {
+                "score": 13,
+                "actions": [
+                    0,
+                    1,
+                    1
+                ],
+                "rank": 7
+            },
+            {
+                "score": 13,
+                "actions": [
+                    0,
+                    1,
+                    1
+                ],
+                "rank": 7
+            },
+            {
+                "score": 13,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 7
+            },
+            {
+                "score": 13,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 7
+            },
+            {
+                "score": 13,
+                "actions": [
+                    2,
+                    1,
+                    1
+                ],
+                "rank": 7
+            },
+            {
+                "score": 13,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 7
+            },
+            {
+                "score": 13,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 7
+            },
+            {
+                "score": 13,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 7
+            },
+            {
+                "score": 12,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 8
+            },
+            {
+                "score": 12,
+                "actions": [
+                    2,
+                    0,
+                    1
+                ],
+                "rank": 8
+            },
+            {
+                "score": 12,
+                "actions": [
+                    0,
+                    1,
+                    0
+                ],
+                "rank": 8
+            },
+            {
+                "score": 12,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 8
+            },
+            {
+                "score": 12,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 8
+            },
+            {
+                "score": 12,
+                "actions": [
+                    0,
+                    1,
+                    2
+                ],
+                "rank": 8
+            },
+            {
+                "score": 12,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 8
+            },
+            {
+                "score": 12,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 8
+            },
+            {
+                "score": 12,
+                "actions": [
+                    2,
+                    2,
+                    2
+                ],
+                "rank": 8
+            },
+            {
+                "score": 12,
+                "actions": [
+                    2,
+                    1,
+                    1
+                ],
+                "rank": 8
+            },
+            {
+                "score": 11,
+                "actions": [
+                    0,
+                    0,
+                    0
+                ],
+                "rank": 9
+            },
+            {
+                "score": 11,
+                "actions": [
+                    1,
+                    2,
+                    1
+                ],
+                "rank": 9
+            },
+            {
+                "score": 11,
+                "actions": [
+                    0,
+                    0,
+                    0
+                ],
+                "rank": 9
+            },
+            {
+                "score": 11,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 9
+            },
+            {
+                "score": 11,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 9
+            },
+            {
+                "score": 11,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 9
+            },
+            {
+                "score": 11,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 9
+            },
+            {
+                "score": 11,
+                "actions": [
+                    0,
+                    1,
+                    0
+                ],
+                "rank": 9
+            },
+            {
+                "score": 11,
+                "actions": [
+                    2,
+                    2,
+                    1
+                ],
+                "rank": 9
+            },
+            {
+                "score": 10,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 10
+            },
+            {
+                "score": 10,
+                "actions": [
+                    2,
+                    2,
+                    2
+                ],
+                "rank": 10
+            },
+            {
+                "score": 10,
+                "actions": [
+                    2,
+                    1,
+                    2
+                ],
+                "rank": 10
+            },
+            {
+                "score": 10,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 10
+            },
+            {
+                "score": 10,
+                "actions": [
+                    2,
+                    1,
+                    1
+                ],
+                "rank": 10
+            },
+            {
+                "score": 9,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 11
+            },
+            {
+                "score": 9,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 11
+            },
+            {
+                "score": 9,
+                "actions": [
+                    2,
+                    1,
+                    2
+                ],
+                "rank": 11
+            },
+            {
+                "score": 9,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 11
+            },
+            {
+                "score": 8,
+                "actions": [
+                    0,
+                    2,
+                    0
+                ],
+                "rank": 12
+            },
+            {
+                "score": 8,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 12
+            },
+            {
+                "score": 7,
+                "actions": [
+                    0,
+                    1,
+                    1
+                ],
+                "rank": 13
+            },
+            {
+                "score": 7,
+                "actions": [
+                    0,
+                    1,
+                    1
+                ],
+                "rank": 13
+            },
+            {
+                "score": 7,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 13
+            },
+            {
+                "score": 7,
+                "actions": [
+                    0,
+                    1,
+                    0
+                ],
+                "rank": 13
+            },
+            {
+                "score": 7,
+                "actions": [
+                    0,
+                    1,
+                    1
+                ],
+                "rank": 13
+            },
+            {
+                "score": 7,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 13
+            },
+            {
+                "score": 7,
+                "actions": [
+                    0,
+                    0,
+                    0
+                ],
+                "rank": 13
+            },
+            {
+                "score": 6,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 14
+            },
+            {
+                "score": 6,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 14
+            },
+            {
+                "score": 6,
+                "actions": [
+                    1,
+                    1,
+                    1
+                ],
+                "rank": 14
+            },
+            {
+                "score": 4,
+                "actions": [
+                    0,
+                    0,
+                    0
+                ],
+                "rank": 15
+            },
+            {
+                "score": 4,
+                "actions": [
+                    0,
+                    0,
+                    0
+                ],
+                "rank": 15
+            },
+            {
+                "score": 3,
+                "actions": [
+                    0,
+                    0,
+                    0
+                ],
+                "rank": 16
+            }
+        ]
+    }
+]
