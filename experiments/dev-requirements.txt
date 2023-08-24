@@ -1,0 +1,12 @@
+-r requirements.txt
+alabaster
+coverage
+coverage_pth
+codecov
+flake8
+pypandoc
+pytest
+recommonmark
+Sphinx
+sphinxcontrib-spelling
+tox
