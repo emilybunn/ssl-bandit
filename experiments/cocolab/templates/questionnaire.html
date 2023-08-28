@@ -3,22 +3,21 @@
 {% block questions %}
     <!-- additional custom questions -->
     <div class="row question">
-        <div class="col-md-8">
-            On a scale of 1-10 (where 10 is the most engaged), please rate the button:
-        </div>
-        <div class="col-md-4">
-            <select id="button-quality" name="button-quality">
-                <option value="10">10 - Very good button</option>
-                <option value="9">9</option>
-                <option value="8">8</option>
-                <option value="7">7</option>
-                <option value="6">6</option>
-                <option value="5" SELECTED>5 - Moderately good button</option>
-                <option value="4">4</option>
-                <option value="3">3</option>
-                <option value="2">2</option>
-                <option value="1">1 - Terrible button</option>
-            </select>
-        </div>
+        How would you describe your strength in this game?
+    </div>
+    <div class="row answer">
+        <textarea class="w-50" id="game-strength" name="game-strength"></textarea>
+    </div>
+    <div class="row question">
+        Do you feel the pay was fair?
+    </div>
+    <div class="row answer">
+        <textarea class="w-50" id="pay-fair" name="pay-fair"></textarea>
+    </div>
+    <div class="row question">
+        Do you have any feedback on this experiment, including problems you encountered?
+    </div>
+    <div class="row answer">
+        <textarea class="w-50" id="feedback" name="feedback"></textarea>
     </div>
 {% endblock %}

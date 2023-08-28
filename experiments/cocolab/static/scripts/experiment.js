@@ -36,20 +36,26 @@ var trialLocations = ['Rainforest', 'Beach', 'Mountains'];
 var stageLocations = ['North', 'East', 'West'];
 var trialSpecies = ['Blue-and-Yellow Macaw', 'Albatross', 'Elegant Trogon']
 
+var rewardMessages = {
+  0: "You didn't see any birds.",
+  1: "You saw a common pidgeon.",
+  2: "You saw a slightly unusual bird.",
+  3: "You saw an uncommon bird!",
+  4: "You saw a rare bird!",
+  5: "You saw an extremely rare bird!",
+}
+
+
 // var instructions = 
 
 // CSS classes
 var buttonClasses = "btn btn-primary action ml-2 ml-2";
-var instructionClasses = "d-flex flex-column mt-3";
+var instructionClasses = "d-flex flex-column mt-3 px-4";
 var stageClasses = "d-flex flex-column justify-content-center text-center mt-3";
 var trialClasses = "row justify-content-center";
-<<<<<<< HEAD
 var tableClasses = "w3-table w3-border w3-bordered w3-centered";
 var tableContainerClasses = "position-fixed"
 var tableContainerStyles = "overflow-y: auto;overflow-x: hidden;"
-=======
-var tableClasses = "position-fixed w3-table w3-border w3-bordered w3-centered scrolldown";
->>>>>>> origin
 
 var create_agent = function() {
   dallinger.createAgent()
@@ -63,7 +69,7 @@ var create_agent = function() {
       console.log("Failed to create agent.")
       if (rejection.status === 403) {
         dallinger.allowExit();
-        // dallinger.goToPage('questionnaire');
+        allinger.goToPage('questionnaire');
       } else {
         dallinger.error(rejection);
       }
@@ -108,22 +114,15 @@ newTrial = function() {
     trialRewardsGotten = [];
     $(".main_div").append(`<div class="${instructionClasses}" id="trial-${trialIndex}-instructions"></div>`);
     $(`#trial-${trialIndex}-instructions`).append(`<h1>Bird Watching, Trip ${trialIndex} in the ${trialLocations[trialIndex - 1]}.</h1>`);
-    $(`#trial-${trialIndex}-instructions`).append(`<p>You are in a ${trialLocations[trialIndex - 1]}, trying to take a photo of the rare ${trialSpecies[trialIndex]}. You are here for five days, trying to choose between three locations: ${stageLocations}. </p>`);
-    $(`#trial-${trialIndex}-instructions`).append(`<p>Each spot in the ${trialLocations[trialIndex - 1]} has a variable chance of spotting one of the birds, as well as a variable reward.</p>`);
-    $(`#trial-${trialIndex}-instructions`).append(`<p>There are ${numTeachers} fellow birdwatchers who've scouted out this location beforehand. You can choose a total of ${teachersToLearnFrom} birdwatchers' location choices to reveal.</p>`);
-    $(`#trial-${trialIndex}-instructions`).append(`<p id="trial-${trialIndex}-tracker">You have chosen ${actionsRevealed} teachers, please choose ${teachersToLearnFrom - actionsRevealed} more.</p>`);
-<<<<<<< HEAD
-    $(".main_div").append(`<div class="tableContainer ${tableContainerClasses}" style="${tableContainerStyles}"><table id="stage-${stageIndex}-table" width="320" class="${tableClasses}" border="1"><tr><th onclick="sortTable()">Rank</th><th onclick="sortTable()"> Score</th><th> Actions </th></tr></table></div>`);
+    $(`#trial-${trialIndex}-instructions`).append(`<p>You are in a ${trialLocations[trialIndex - 1]}, trying to take a photo rare birds. You are here for five days, trying to choose between three locations: ${stageLocations}. </p>`);
+    $(`#trial-${trialIndex}-instructions`).append(`<p>At each spot in the ${trialLocations[trialIndex - 1]}, you have a different chance of spotting each kind of bird.</p>`);
+    $(`#trial-${trialIndex}-instructions`).append(`<p>There are ${numTeachers} expert birdwatchers who have scouted out this location beforehand. You can choose a total of ${teachersToLearnFrom} experts' spot choices to reveal.</p>`);
+    $(`#trial-${trialIndex}-instructions`).append(`<p id="trial-${trialIndex}-tracker">You have chosen ${actionsRevealed} experts, please choose ${teachersToLearnFrom - actionsRevealed} more.</p>`);
+    $(".main_div").append(`<div class="tableContainer ${tableContainerClasses}" style="${tableContainerStyles}"><table id="stage-${stageIndex}-table" width="320" class="${tableClasses}" border="1"><tr><th onclick="sortTable()">Rank</th><th onclick="sortTable()"> Score</th><th> Locations </th></tr></table></div>`);
     loadTableData();
     revealActions();
     $(".tableContainer").css("max-height", `${window.innerHeight - 100 - $(".tableContainer").offset().top}px`);
-    $(".main_div").append(`<h1 class="${trialClasses}" id="trial-${trialIndex}-label">Trial ${trialIndex}</h1>`);
-=======
-    $(".main_div").append(`<table id="stage-${stageIndex}-table" width="320" height="200" class="${tableClasses}" border="1"><tr><th onclick="sortTable()">Rank</th><th onclick="sortTable()"> Score</th><th> Locations </th></tr></table>`);
-    loadTableData();
-    revealActions();
-    $(".main_div").append(`<h1 class="${trialClasses}" id="trial-${trialIndex}-label">${trialLocations[trialIndex]}</h1>`);
->>>>>>> origin
+    $(".main_div").append(`<h1 class="${trialClasses}" id="trial-${trialIndex}-label">${trialLocations[trialIndex - 1]}</h1>`);
   } else {
     endExperiment();
   }
@@ -140,7 +139,7 @@ renderStage = function() {
   }
   trialInfo[trialIndex]["armsPulled"] = trialArmsPulled;
   trialInfo[trialIndex]["rewardsGotten"] = trialRewardsGotten;
-  $(`#stage-${stageIndex}`).append(`<div class="result" id="stage-${stageIndex}-result" style="display: none; color: blue; font-size: 160%; "><strong>Reward: <span id="stage-${stageIndex}-reward"></span></strong></div>`);
+  $(`#stage-${stageIndex}`).append(`<div class="result" id="stage-${stageIndex}-result" style="display: none; color: blue; font-size: 160%; "><span id="stage-${stageIndex}-reward-text"></span><br/><strong>Reward: <span id="stage-${stageIndex}-reward"></span></strong></div>`);
 }
 
 var makeActionFn = function(stageIndex, actionNum) {
@@ -157,6 +156,7 @@ var makeActionFn = function(stageIndex, actionNum) {
     trialArmsPulled.push(actionNum);
     trialRewardsGotten.push(reward);
     $(`#stage-${stageIndex}-reward`).html(reward);
+    $(`#stage-${stageIndex}-reward-text`).html(rewardMessages[reward]);
     $(`#stage-${stageIndex}-result`).show();
     nextStage();
   }
@@ -254,6 +254,6 @@ var endExperiment = function() {
     contents: JSON.stringify(trialInfo),
     info_type: 'Info'
   });
-  $(".main_div").append("<p>Experiment complete!</p>")
-  setTimeout(function() { dallinger.goToPage('questionnaire'); }, 3000);
+  $(".main_div").append("<p>Experiment complete! You will be redirected the questionnaire.</p>")
+  setTimeout(function() { dallinger.allowExit(); dallinger.goToPage('questionnaire'); }, 2000);
 }
