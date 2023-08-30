@@ -1,7 +1,7 @@
 [Experiment]
-mode = sandbox
+mode = live
 auto_recruit = false
-num_participants = 1
+num_participants = 5
 duration = 0.67
 base_payment = 1.5
 
