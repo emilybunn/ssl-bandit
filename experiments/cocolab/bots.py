@@ -20,7 +20,8 @@ class Bot(BotBase):
         try:
             logger.info("Entering participate method")
             submit = WebDriverWait(self.driver, 10).until(
-                EC.element_to_be_clickable((By.ID, 'submit-response')))
+                EC.element_to_be_clickable((By.ID, "submit-response"))
+            )
             submit.click()
             return True
         except TimeoutException:
@@ -32,30 +33,25 @@ class HighPerformanceBot(HighPerformanceBotBase):
 
     def participate(self):
         """Click the button."""
-        self.log('Bot player participating.')
+        self.log("Bot player participating.")
         node_id = None
         while True:
             # create node
-            url = "{host}/node/{self.participant_id}".format(
-                host=self.host,
-                self=self
-            )
+            url = "{host}/node/{self.participant_id}".format(host=self.host, self=self)
             result = requests.post(url)
-            if result.status_code == 500 or result.json()['status'] == 'error':
+            if result.status_code == 500 or result.json()["status"] == "error":
                 self.stochastic_sleep()
                 continue
 
-            node_id = result.json.get('node', {}).get('id')
+            node_id = result.json.get("node", {}).get("id")
 
         while node_id:
             # add info
-            url = "{host}/info/{node_id}".format(
-                host=self.host,
-                node_id=node_id
+            url = "{host}/info/{node_id}".format(host=self.host, node_id=node_id)
+            result = requests.post(
+                url, data={"contents": "Submitted", "info_type": "Info"}
             )
-            result = requests.post(url, data={"contents": "Submitted",
-                                              "info_type": "Info"})
-            if result.status_code == 500 or result.json()['status'] == 'error':
+            if result.status_code == 500 or result.json()["status"] == "error":
                 self.stochastic_sleep()
                 continue
 
